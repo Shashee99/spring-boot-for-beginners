@@ -28,7 +28,16 @@ jobs:
           mvn clean
           mvn -B package --file pom.xml
         
-        
+      - name: Build Docker Image
+        uses: actions/build-push-actions@v2
+        with:
+          context: .
+          dockerfile: Dockerfile
+          push: false
+          tags: ${{secrets.DOCKER_HUB_USERNAME}}/spring-boot-for-beginners:$(date-'%Y-%m-%d%H-%M-%S')
+
+
+
 
 
 
